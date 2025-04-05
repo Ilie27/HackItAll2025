@@ -1,5 +1,6 @@
 {
     "id": "file_paths",
+    "path": "",
     "files": [
         {
             "id": "yes",
@@ -48,6 +49,56 @@
                 {
                     "id": "please",
                     "path": "/symbols/arasaac/please.png"
+                }
+            ]
+        },
+        {
+            "id": "emotions",
+            "path": "/symbols/cboard/emotions.svg",
+            "files": [
+                {
+                    "id": "I am",
+                    "path": "/symbols/arasaac/i_am.png"
+                },
+                {
+                    "id": "You are",
+                    "path": "symbols/arasaac/you_are.png"
+                },
+                {
+                    "id": "Are you",
+                    "path": "symbols/arasaac/are_you.png"
+                },
+                {
+                    "id": "happy",
+                    "path": "symbols/mulberry/happy_man.svg"
+                },
+                {
+                    "id": "sad",
+                    "path": "symbols/mulberry/sad_man.svg"
+                },
+                {
+                    "id": "angry",
+                    "path": "symbols/mulberry/angry_man.svg"
+                },
+                {
+                    "id": "afraid",
+                    "path": "symbols/mulberry/afraid_man.svg"
+                },
+                {
+                    "id": "confused",
+                    "path": "symbols/mulberry/confused_man.svg"
+                },
+                {
+                    "id": "hot",
+                    "path": "symbols/mulberry/hot_person.svg"
+                },
+                {
+                    "id": "excited",
+                    "path": "symbols/mulberry/excited_man.svg"
+                },
+                {
+                    "id": "relaxed",
+                    "path": "symbols/mulberry/relax_3_,_to.svg"
                 }
             ]
         }
