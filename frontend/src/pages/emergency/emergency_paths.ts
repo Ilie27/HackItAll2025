@@ -17,6 +17,48 @@ export const data: ImageData = {
             "path": "/symbols/mulberry/no.svg"
         },
         {
+            "id": "quick_chat",
+            "path": "/symbols/cboard/quick_chat.svg",
+            "files": [
+                {
+                    "id": "yes",
+                    "path": "/symbols/arasaac/yes.svg"
+                },
+                {
+                    "id": "no",
+                    "path": "/symbols/mulberry/no.svg"
+                },
+                {
+                    "id": "hello",
+                    "path": "/symbols/mulberry/hello.svg"
+                },
+                {
+                    "id": "goodbye",
+                    "path": "/symbols/arasaac/goodbye.png"
+                },
+                {
+                    "id": "good",
+                    "path": "/symbols/mulberry/good.svg"
+                },
+                {
+                    "id": "bad",
+                    "path": "/symbols/mulberry/bad.svg"
+                },
+                {
+                    "id": "I can't speak",
+                    "path": "/symbols/mulberry/non_speaking.svg"
+                },
+                {
+                    "id": "thank you",
+                    "path": "/symbols/arasaac/thanks.png"
+                },
+                {
+                    "id": "please",
+                    "path": "/symbols/arasaac/please.png"
+                }
+            ]
+        },
+        {
             "id": "I need",
             "path": "/symbols/mulberry/help_,_to.svg"
         },
@@ -29,8 +71,26 @@ export const data: ImageData = {
             "path": "/symbols/mulberry/cut.svg"
         },
         {
-            "id": "police",
-            "path": "/symbols/mulberry/police_1b.svg"
+            "id": "danger",
+            "path": "/symbols/mulberry/danger.png",
+            "files": [
+                {
+                    "id": "police",
+                    "path": "/symbols/mulberry/police_1b.svg"
+                },
+                {
+                    "id": "violence",
+                    "path": "/symbols/mulberry/violence.png"
+                },
+                {
+                    "id": "car accident",
+                    "path": "/symbols/mulberry/car_accident.png"
+                },
+                {
+                    "id": "robbery",
+                    "path": "/symbols/mulberry/robbery.png"
+                },
+            ]
         },
         {
             "id": "body",
@@ -47,78 +107,6 @@ export const data: ImageData = {
                 {
                     "id": "head",
                     "path": "/symbols/mulberry/head.svg"
-                },
-                {
-                    "id": "neck",
-                    "path": "/symbols/mulberry/neck.svg"
-                },
-                {
-                    "id": "shoulder",
-                    "path": "/symbols/mulberry/shoulder.svg"
-                },
-                {
-                    "id": "arms",
-                    "path": "/symbols/mulberry/arms.svg"
-                },
-                {
-                    "id": "right hand",
-                    "path": "/symbols/mulberry/right_hand.svg"
-                },
-                {
-                    "id": "left hand",
-                    "path": "/symbols/mulberry/left_hand.svg"
-                },
-                {
-                    "id": "elbow",
-                    "path": "/symbols/mulberry/elbow.svg"
-                },
-                {
-                    "id": "knee",
-                    "path": "/symbols/mulberry/knee.svg"
-                },
-                {
-                    "id": "back",
-                    "path": "/symbols/mulberry/back.svg"
-                },
-                {
-                    "id": "stomach",
-                    "path": "/symbols/mulberry/stomach.svg"
-                },
-                {
-                    "id": "finger",
-                    "path": "/symbols/mulberry/finger.svg"
-                },
-                {
-                    "id": "leg",
-                    "path": "/symbols/mulberry/leg.svg"
-                },
-                {
-                    "id": "foot",
-                    "path": "/symbols/mulberry/foot.svg"
-                },
-                {
-                    "id": "throat",
-                    "path": "/symbols/mulberry/throat.svg"
-                },
-                {
-                    "id": "hip",
-                    "path": "/symbols/mulberry/hip.svg"
-                },
-                {
-                    "id": "bottom",
-                    "path": "/symbols/mulberry/bottom.svg"
-                },
-                {
-                    "id": "muscles",
-                    "path": "/symbols/mulberry/muscles.svg"
-                },
-                {
-                    "id": "skin",
-                    "path": "/symbols/mulberry/skin.svg"
-                },
-                {
-                    "id": "bone",
-                    "path": "/symbols/mulberry/bone.svg"
                 },
                 {
                     "id": "face",
@@ -207,7 +195,79 @@ export const data: ImageData = {
                             "path": "/symbols/mulberry/operation.svg"
                         }
                     ]
-                }
+                },
+                {
+                    "id": "neck",
+                    "path": "/symbols/mulberry/neck.svg"
+                },
+                {
+                    "id": "shoulder",
+                    "path": "/symbols/mulberry/shoulder.svg"
+                },
+                {
+                    "id": "arms",
+                    "path": "/symbols/mulberry/arms.svg"
+                },
+                {
+                    "id": "right hand",
+                    "path": "/symbols/mulberry/right_hand.svg"
+                },
+                {
+                    "id": "left hand",
+                    "path": "/symbols/mulberry/left_hand.svg"
+                },
+                {
+                    "id": "elbow",
+                    "path": "/symbols/mulberry/elbow.svg"
+                },
+                {
+                    "id": "knee",
+                    "path": "/symbols/mulberry/knee.svg"
+                },
+                {
+                    "id": "back",
+                    "path": "/symbols/mulberry/back.svg"
+                },
+                {
+                    "id": "stomach",
+                    "path": "/symbols/mulberry/stomach.svg"
+                },
+                {
+                    "id": "finger",
+                    "path": "/symbols/mulberry/finger.svg"
+                },
+                {
+                    "id": "leg",
+                    "path": "/symbols/mulberry/leg.svg"
+                },
+                {
+                    "id": "foot",
+                    "path": "/symbols/mulberry/foot.svg"
+                },
+                {
+                    "id": "throat",
+                    "path": "/symbols/mulberry/throat.svg"
+                },
+                {
+                    "id": "hip",
+                    "path": "/symbols/mulberry/hip.svg"
+                },
+                {
+                    "id": "bottom",
+                    "path": "/symbols/mulberry/bottom_3.svg"
+                },
+                {
+                    "id": "muscles",
+                    "path": "/symbols/mulberry/muscles.svg"
+                },
+                {
+                    "id": "skin",
+                    "path": "/symbols/mulberry/skin.svg"
+                },
+                {
+                    "id": "bone",
+                    "path": "/symbols/mulberry/bone.svg"
+                },
             ]
         },
         {
@@ -302,5 +362,6 @@ export const data: ImageData = {
                 },
             ]
         }
+        
     ]
 }
