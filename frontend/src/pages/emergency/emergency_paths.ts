@@ -209,6 +209,98 @@ export const data: ImageData = {
                     ]
                 }
             ]
+        },
+        {
+            "id": "people",
+            "path": "/symbols/cboard/people.svg",
+            "files": [
+                {
+                    "id": "mum",
+                    "path": "/symbols/mulberry/mum.svg"
+                },
+                {
+                    "id": "dad",
+                    "path": "/symbols/mulberry/dad.svg"
+                },
+                {
+                    "id": "teacher",
+                    "path": "/symbols/mulberry/teacher_1b.svg"
+                },
+                {
+                    "id": "doctor",
+                    "path": "/symbols/mulberry/doctor_1a.svg"
+                },
+                {
+                    "id": "nurse",
+                    "path": "/symbols/mulberry/nurse_1a.svg"
+                },
+                {
+                    "id": "police",
+                    "path": "/symbols/mulberry/police_1b.svg"
+                },
+                {
+                    "id": "taxi driver",
+                    "path": "/symbols/mulberry/taxi_driver_1c.svg"
+                },
+                {
+                    "id": "IT assistant",
+                    "path": "/symbols/mulberry/it_assistant_2b.svg"
+                },
+                {
+                    "id": "family",
+                    "path": "/symbols/mulberry/family.svg",
+                    "files": [
+                        {
+                            "id": "my",
+                            "path": "/symbols/arasaac/my.png"
+                        },
+                        {
+                            "id": "your",
+                            "path": "symbols/arasaac/you_are.png"
+                        },
+                        {
+                            "id": "family",
+                            "path": "/symbols/mulberry/family.svg"
+                        },
+                        {
+                            "id": "mum",
+                            "path": "/symbols/mulberry/mum.svg"
+                        },
+                        {
+                            "id": "dad",
+                            "path": "/symbols/mulberry/dad.svg"
+                        },
+                        {
+                            "id": "baby",
+                            "path": "/symbols/mulberry/baby.svg"
+                        },
+                        {
+                            "id": "sister",
+                            "path": "/symbols/mulberry/sister.svg"
+                        },
+                        {
+                            "id": "brother",
+                            "path": "/symbols/mulberry/brother.svg"
+                        },
+                        {
+                            "id": "daughter",
+                            "path": "/symbols/mulberry/daughter.svg"
+                        },
+                        {
+                            "id": "son",
+                            "path": "/symbols/mulberry/son.svg"
+                        },
+                        {
+                            "id": "grandmother",
+                            "path": "/symbols/mulberry/grandmother.svg"
+                        },
+                        {
+                            "id": "grandfather",
+                            "path": "/symbols/mulberry/grandfather.svg"
+                        },
+                    ]
+                },
+            ]
         }
     ]
 }

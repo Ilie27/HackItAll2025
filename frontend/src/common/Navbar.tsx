@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function Navbar() {
+    const navigate = useNavigate();
+    
     return <nav className="w-full bg-gray-800 flex justify-between items-center p-4">
         <div className="w-full flex flex-row flex-wrap p-2 items-start gap-4">
             <div className="flex items-center flex-col bg-amber-200 box-content
                     rounded-lg px-2"
-                onClick={() => { }}
+                onClick={() => navigate('/emergency')}
             >
                 <img src={"/symbols/mulberry/emergency.png"} alt="Send" className="w-[20vw] max-w-[250px] h-[15vh] object-contain" />
                 <div>EMERGENCY</div>
