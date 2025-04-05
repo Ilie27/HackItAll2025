@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { ImageData, data } from "./file_paths";
+import { data as emergencyData } from "../emergency/emergency_paths";
 import speak from "../../../src/text_to_speech"
+import { AppContext } from "../../AppContext";
 
 export default function BoardPage() {
     const [category, setCategory] = useState<number[]>([]);
     const [imageBar, setImageBar] = useState<{id: string, path: string}[]>([]);
+    const { mode } = useContext(AppContext);
+
     const images: ImageData = category.reduce((acc: ImageData, key: number) => {
         return acc.files?.[key] as ImageData;
-    }, data);
+    }, mode === 'emergency' ? emergencyData : data);
 
     const enterFolder = (key: number) => {
         const newCategory = [...category, key];

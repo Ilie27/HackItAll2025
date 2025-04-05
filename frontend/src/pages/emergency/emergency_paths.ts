@@ -1,8 +1,4 @@
-export type ImageData = {
-    id: string;
-    path: string;
-    files?: ImageData[];
-};
+import { ImageData } from "../board/file_paths";
 
 export const data: ImageData = {
     "id": "",
