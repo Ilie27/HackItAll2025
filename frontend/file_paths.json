@@ -1,0 +1,55 @@
+{
+    "id": "file_paths",
+    "files": [
+        {
+            "id": "yes",
+            "path": "/symbols/arasaac/yes.svg"
+        },
+        {
+            "id": "no",
+            "path": "/symbols/arasaac/no.svg"
+        },
+        {
+            "id": "quick_chat",
+            "path": "/symbols/cboard/quick_chat.svg",
+            "files": [
+                {
+                    "id": "yes",
+                    "path": "/symbols/arasaac/yes.svg"
+                },
+                {
+                    "id": "no",
+                    "path": "/symbols/arasaac/no.svg"
+                },
+                {
+                    "id": "hello",
+                    "path": "/symbols/mulberry/hello.svg"
+                },
+                {
+                    "id": "goodbye",
+                    "path": "/symbols/arasaac/goodbye.png"
+                },
+                {
+                    "id": "good",
+                    "path": "/symbols/mulberry/good.svg"
+                },
+                {
+                    "id": "bad",
+                    "path": "/symbols/mulberry/bad.svg"
+                },
+                {
+                    "id": "I can't speak",
+                    "path": "/symbols/mulberry/non_speaking.svg"
+                },
+                {
+                    "id": "thank you",
+                    "path": "/symbols/arasaac/thanks.png"
+                },
+                {
+                    "id": "please",
+                    "path": "/symbols/arasaac/please.png"
+                }
+            ]
+        }
+    ]
+}
