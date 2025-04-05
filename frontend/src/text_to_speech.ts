@@ -1,5 +1,13 @@
-function speak(text, options = {}) {
-    const synth = window.speechSynthesis;
+export default function speak(
+    text: string,
+    options: {
+      lang?: string;
+      rate?: number;
+      pitch?: number;
+      volume?: number;
+    } = {}
+  ): void {
+    const synth: SpeechSynthesis | null = window.speechSynthesis;
   
     // Abort if TTS isn't supported
     if (!synth) {
@@ -7,7 +15,7 @@ function speak(text, options = {}) {
       return;
     }
   
-    const utterance = new SpeechSynthesisUtterance(text);
+    const utterance: SpeechSynthesisUtterance = new SpeechSynthesisUtterance(text);
   
     // Basic config
     utterance.lang = options.lang || "en-US";
@@ -16,9 +24,9 @@ function speak(text, options = {}) {
     utterance.volume = options.volume || 1;
   
     // Try to find a Google voice
-    const voices = synth.getVoices();
-    let selectedVoice = voices.find(
-      voice =>
+    const voices: SpeechSynthesisVoice[] = synth.getVoices();
+    let selectedVoice: SpeechSynthesisVoice | undefined = voices.find(
+      (voice: SpeechSynthesisVoice) =>
         voice.lang === utterance.lang &&
         voice.name.toLowerCase().includes("google")
     );
@@ -26,7 +34,9 @@ function speak(text, options = {}) {
     // Fallback to any voice with the correct language
     if (!selectedVoice) {
       console.warn("No Google voice found. Falling back to default voice.");
-      selectedVoice = voices.find(voice => voice.lang === utterance.lang);
+      selectedVoice = voices.find(
+        (voice: SpeechSynthesisVoice) => voice.lang === utterance.lang
+      );
     }
   
     // Final fallback to first available voice
@@ -44,4 +54,3 @@ function speak(text, options = {}) {
     synth.cancel();
     synth.speak(utterance);
   }
-  

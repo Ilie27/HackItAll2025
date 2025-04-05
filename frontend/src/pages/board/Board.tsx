@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { ImageData, data } from "./file_paths";
+import speak from "../../../src/text_to_speech"
 
 export default function BoardPage() {
     const [category, setCategory] = useState<number[]>([]);
@@ -24,6 +25,7 @@ export default function BoardPage() {
     const addImage = (id: string, path: string) => {
         const newImageBar = [...imageBar, { id, path }];
         setImageBar(newImageBar);
+        speak(id);
     }
 
     return <div className="w-full min-h-screen flex flex-col">
