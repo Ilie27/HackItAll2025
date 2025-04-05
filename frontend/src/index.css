@@ -3,3 +3,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.stripped-out:hover {
+    background: repeating-linear-gradient(
+        -45deg,
+        #eb8686,
+        #eb8686 10px,
+        var(--color-gray-200) 10px,
+        var(--color-gray-200) 20px
+    );
+}

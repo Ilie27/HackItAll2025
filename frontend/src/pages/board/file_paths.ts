@@ -4,7 +4,7 @@ export type ImageData = {
     files?: ImageData[];
 };
 
-export const data = {
+export const data: ImageData = {
     "id": "",
     "path": "",
     "files": [
