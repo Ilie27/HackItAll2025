@@ -17,96 +17,20 @@ export const data: ImageData = {
             "path": "/symbols/mulberry/no.svg"
         },
         {
-            "id": "quick_chat",
-            "path": "/symbols/cboard/quick_chat.svg",
-            "files": [
-                {
-                    "id": "yes",
-                    "path": "/symbols/arasaac/yes.svg"
-                },
-                {
-                    "id": "no",
-                    "path": "/symbols/mulberry/no.svg"
-                },
-                {
-                    "id": "hello",
-                    "path": "/symbols/mulberry/hello.svg"
-                },
-                {
-                    "id": "goodbye",
-                    "path": "/symbols/arasaac/goodbye.png"
-                },
-                {
-                    "id": "good",
-                    "path": "/symbols/mulberry/good.svg"
-                },
-                {
-                    "id": "bad",
-                    "path": "/symbols/mulberry/bad.svg"
-                },
-                {
-                    "id": "I can't speak",
-                    "path": "/symbols/mulberry/non_speaking.svg"
-                },
-                {
-                    "id": "thank you",
-                    "path": "/symbols/arasaac/thanks.png"
-                },
-                {
-                    "id": "please",
-                    "path": "/symbols/arasaac/please.png"
-                }
-            ]
+            "id": "I need",
+            "path": "/symbols/mulberry/help_,_to.svg"
         },
         {
-            "id": "emotions",
-            "path": "/symbols/cboard/emotions.svg",
-            "files": [
-                {
-                    "id": "I am",
-                    "path": "/symbols/arasaac/i_am.png"
-                },
-                {
-                    "id": "You are",
-                    "path": "symbols/arasaac/you_are.png"
-                },
-                {
-                    "id": "Are you",
-                    "path": "symbols/arasaac/are_you.png"
-                },
-                {
-                    "id": "happy",
-                    "path": "symbols/mulberry/happy_man.svg"
-                },
-                {
-                    "id": "sad",
-                    "path": "symbols/mulberry/sad_man.svg"
-                },
-                {
-                    "id": "angry",
-                    "path": "symbols/mulberry/angry_man.svg"
-                },
-                {
-                    "id": "afraid",
-                    "path": "symbols/mulberry/afraid_man.svg"
-                },
-                {
-                    "id": "confused",
-                    "path": "symbols/mulberry/confused_man.svg"
-                },
-                {
-                    "id": "hot",
-                    "path": "symbols/mulberry/hot_person.svg"
-                },
-                {
-                    "id": "excited",
-                    "path": "symbols/mulberry/excited_man.svg"
-                },
-                {
-                    "id": "relaxed",
-                    "path": "symbols/mulberry/relax_3_,_to.svg"
-                }
-            ]
+            "id": "I have pain in",
+            "path": "/symbols/arasaac/i_am_pain.png"
+        },
+        {
+            "id": "cut",
+            "path": "/symbols/mulberry/cut.svg"
+        },
+        {
+            "id": "police",
+            "path": "/symbols/mulberry/police_1b.svg"
         },
         {
             "id": "body",
@@ -377,52 +301,6 @@ export const data: ImageData = {
                     ]
                 },
             ]
-        },
-        {
-            "id": "numbers",
-            "path": "/symbols/mulberry/count_,_to.svg",
-            "files": [
-                {
-                    "id": "zero",
-                    "path": "/symbols/mulberry/zero.svg"
-                },
-                {
-                    "id": "one",
-                    "path": "/symbols/mulberry/one.svg"
-                },
-                {
-                    "id": "two",
-                    "path": "/symbols/mulberry/two.svg"
-                },
-                {
-                    "id": "three",
-                    "path": "/symbols/mulberry/three.svg"
-                },
-                {
-                    "id": "four",
-                    "path": "/symbols/mulberry/four.svg"
-                },
-                {
-                    "id": "five",
-                    "path": "/symbols/mulberry/five.svg"
-                },
-                {
-                    "id": "six",
-                    "path": "/symbols/mulberry/six.svg"
-                },
-                {
-                    "id": "seven",
-                    "path": "/symbols/mulberry/seven.svg"
-                },
-                {
-                    "id": "eight",
-                    "path": "/symbols/mulberry/eight.svg"
-                },
-                {
-                    "id": "nine",
-                    "path": "/symbols/mulberry/nine.svg"
-                }
-            ]
-        },
+        }
     ]
 }

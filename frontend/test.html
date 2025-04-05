@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TTS Test</title>
+</head>
+<body>
+  <button onclick="speak('Hi, I am testing Google voice.')">Speak</button>
+
+  <script>
+    function speak(text, options = {}) {
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      utterance.lang = options.lang || "en-US";
+      utterance.rate = options.rate || 1;
+      utterance.pitch = options.pitch || 1;
+      utterance.volume = options.volume || 1;
+
+      const voices = synth.getVoices();
+      const googleVoice = voices.find(
+        voice =>
+          voice.lang === utterance.lang &&
+          voice.name.toLowerCase().includes("google")
+      );
+
+      if (googleVoice) {
+        utterance.voice = googleVoice;
+      } else {
+        console.warn("Google voice not found.");
+      }
+
+      synth.cancel();
+      synth.speak(utterance);
+    }
+
+    // Ensure voices are loaded
+    window.speechSynthesis.onvoiceschanged = () => {
+      console.log("Voices ready.");
+    };
+  </script>
+</body>
+</html>
