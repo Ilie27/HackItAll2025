@@ -32,20 +32,29 @@ def init_session():
     address = data.get("address", "Unknown location")
     condition = data.get("condition", "non-verbal")
 
+
+    if name:
+        intro = f"You are helping a non-verbal person named {name} communicate with others. "
+    else:
+        intro = "You are helping a non-verbal person communicate with others. "
+    
+    if condition:
+        intro += f"They have this condition: {condition}"
+
     try:
         # Start a Gemini chat session with initial context
         model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
         chat = model.start_chat(history=[])
 
         system_prompt = (
-            "You are helping a non-verbal person communicate with others. "
+            intro +
             "They cannot speak, so they press one or more visual symbols to express their intent. "
             "Your job is to interpret those symbols and generate a clear, polite, and natural sentence that communicates what they are trying to say. "
             "Use the user's personal context below to better understand their situation and style of communication:\n\n"
             f"{context}\n\n"
             "From now on, you will receive lists of symbols like ['hungry', 'soup', 'please'] and you must convert them into full sentences. Reply only with a sentence."
         )
-
+        print(system_prompt)
         chat.send_message(system_prompt)
 
         # Create and store the session with profile
@@ -83,6 +92,7 @@ def send_symbols():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 # Send emergency message including user info
 @app.route('/send_emergency', methods=['POST'])
 def send_emergency():
@@ -92,6 +102,7 @@ def send_emergency():
 
     if session_id not in sessions:
         return jsonify({"error": "Invalid session ID"}), 400
+        
 
     try:
         session = sessions[session_id]
@@ -99,12 +110,13 @@ def send_emergency():
         profile = session["profile"]
 
         emergency_prompt = (
-            f"A non-verbal person named {profile['name']} is requesting emergency help. "
+            f"The non-verbal user named {profile['name']} is requesting emergency help. "
             f"They are located at {profile['address']}. "
             f"Their medical condition is: {profile['condition']}. "
             f"The person selected the following symbols to communicate their problem: {', '.join(symbols)}. "
             f"Craft an urgent and clear message that can be read or sent to emergency services, explaining their need for help."
         )
+        print(emergency_prompt)
 
         response = chat.send_message(emergency_prompt)
 
@@ -116,6 +128,50 @@ def send_emergency():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+# Update user profile information (name, address, condition)
+@app.route('/update_profile', methods=['PATCH'])
+def update_profile():
+    data = request.get_json()
+    session_id = data.get("session_id")
+
+    if session_id not in sessions:
+        return jsonify({"error": "Invalid session ID"}), 400
+
+    profile = sessions[session_id]["profile"]
+
+    # Update fields if provided
+    name = data.get("name")
+    address = data.get("address")
+    condition = data.get("condition")
+
+    chat_message = "The user's profile has changed"
+    if name:
+        profile["name"] = name
+        chat_message += f",their name is now {name}"
+    if address:
+        profile["address"] = address
+        chat_message += f", their address is {address}"
+    if condition:
+        profile["condition"] = condition
+        chat_message += f", and their condition is: {condition}."
+
+
+    if chat_message != "The user's profile has changed":
+        try:
+            session = sessions[session_id]
+            chat = session["chat"]
+            chat.send_message(chat_message)
+
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+
+    return jsonify({
+        "message": "Profile updated successfully.",
+        "updated_profile": profile
+    })
+
 
 # Optional: clear all sessions (dev tool)
 @app.route('/clear_sessions', methods=['POST'])
