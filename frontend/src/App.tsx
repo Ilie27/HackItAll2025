@@ -8,7 +8,7 @@ function App() {
 		<Navbar />
 		<Routes>
 			<Route path="/profile" element={<Profile />} />
-			<Route path="/" element={<BoardPage />} />
+			<Route path="/board" element={<BoardPage />} />
 		</Routes>
 	</BrowserRouter>
 }
