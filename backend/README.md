@@ -1,113 +1,184 @@
-# Gemini Communication Backend
+# 🧠 Gemini Communication Backend
 
-This is a lightweight Flask-based backend powered by Google Gemini. It interprets button-based symbol selections from non-verbal users into natural language messages using AI. The backend maintains per-user sessions to preserve context.
+This is a lightweight Flask-based backend powered by Google Gemini. It interprets button-based symbol selections from non-verbal users into natural language messages using AI. The backend maintains per-user sessions to preserve context and allows emergency message generation.
 
 ---
 
-## Features
+## 🚀 Features
 
 - Session-based AI conversations using Gemini 1.5 Pro
 - Interprets selected symbols (e.g., "hungry", "please") into full sentences
-- REST API (2 main endpoints)
+- Emergency message crafting with user name, address, and condition
+- Dynamic user profile updates (name, address, condition)
+- In-memory session storage with context awareness
 - Uses `.env` for safe API key handling
 
 ---
 
-## Requirements
+## 🛠 Requirements
 
 - Python 3.8+
-- Google Gemini API key (get it here: https://aistudio.google.com/app/apikey)
-- Pip & virtualenv (recommended)
+- Google Gemini API key (Get it here: https://aistudio.google.com/app/apikey)
+- pip, venv (recommended)
 
+---
 
-## Setup Instructions
+## ⚙️ Setup Instructions
 
-1. Go to the backend
+1. Navigate to the backend folder:
+
    cd backend
 
-2. Create and activate a virtual environment
+2. Create and activate a virtual environment:
 
    python -m venv venv
-   source venv/bin/activate          # On Windows: venv\Scripts\activate
+   source venv/bin/activate        # On Windows: venv\Scripts\activate
 
-3. Install dependencies
+3. Install dependencies:
 
    pip install -r requirements.txt
 
-4. Create your `.env` file
-
-   In the project root, create a file named `.env` and add:
+4. Create your `.env` file:
 
    GEMINI_API_KEY=your-google-api-key-here
 
-5. Run the server
+5. Run the Flask server:
 
    flask run
 
-   You’ll see something like:
+You’ll see:
 
    * Running on http://127.0.0.1:5000
 
 ---
 
-## API Endpoints
+## 🧪 API Endpoints
 
-GET /
+### ✅ GET /
+
 Health check  
-Returns: "✅ Gemini Flask API is running!"
+Returns a string to confirm the server is running.
+
+Response:
+"✅ Gemini Flask API is running!"
 
 ---
 
-POST /init_session  
-Initialize a new session with context.
+### 🧠 POST /init_session
+
+Start a new session with context and user profile.
 
 Request:
+
 {
-  "context": "Hi, my name is Alex. I am nonverbal. Help me communicate based on the buttons I press."
+  "name": "Alex",
+  "address": "123 Main Street, Bucharest",
+  "condition": "non-verbal with epilepsy",
+  "context": "Alex is a 25-year-old with autism and cannot speak. Please help them communicate using selected visual symbols."
 }
 
 Response:
+
 {
   "session_id": "f12a9a..."
 }
 
 ---
 
-POST /send_symbols  
-Send user-selected symbols and receive an interpreted message.
+### 💬 POST /send_symbols
+
+Send user-selected symbols and get a natural sentence back.
 
 Request:
+
 {
   "session_id": "f12a9a...",
   "symbols": ["hungry", "soup", "please"]
 }
 
 Response:
+
 {
   "message": "I'm hungry and would like some soup, please."
 }
 
 ---
 
-Optional: POST /clear_sessions  
-Clears all stored sessions (development only)
+### 🚨 POST /send_emergency
+
+Craft a clear emergency message based on symbols + user profile (name, address, condition).
+
+Request:
+
+{
+  "session_id": "f12a9a...",
+  "symbols": ["pain", "head", "dizzy"]
+}
+
+Response:
+
+{
+  "emergency_message": "This is Alex. I am non-verbal and located at 123 Main Street, Bucharest. I am experiencing severe head pain and dizziness. Please send help immediately.",
+  "name": "Alex",
+  "address": "123 Main Street, Bucharest"
+}
 
 ---
 
-## Tech Stack
+### ✏️ PATCH /update_profile
+
+Update the user’s name, address, or medical condition for a session.
+
+Request:
+
+{
+  "session_id": "f12a9a...",
+  "address": "Emergency Hospital, Cluj",
+  "condition": "non-verbal with seizure risk"
+}
+
+Response:
+
+{
+  "message": "Profile updated successfully.",
+  "updated_profile": {
+    "name": "Alex",
+    "address": "Emergency Hospital, Cluj",
+    "condition": "non-verbal with seizure risk"
+  }
+}
+
+> Gemini will also be informed that the profile has changed for contextual continuity.
+
+---
+
+### 🧹 POST /clear_sessions
+
+Clears all active chat sessions (dev tool).
+
+Response:
+
+{
+  "message": "All sessions cleared."
+}
+
+---
+
+## 🧠 Tech Stack
 
 - Backend: Flask + Google Generative AI SDK
 - AI Model: models/gemini-1.5-pro-latest
-- Session Handling: In-memory dictionary (can be extended)
-- Config: .env + python-dotenv
+- Session Handling: In-memory (UUID → chat + profile)
+- Security: API key loaded via python-dotenv
 
 ---
 
-## Future Ideas
+## 💡 Future Ideas
 
-- Store user profiles in a database
-- Multilingual output
-- TTS integration in frontend
-- Export chat logs
+- Save session history to a database
+- Add real SMS/email dispatch for emergency messages
+- Enable voice tone and language configuration
+- Add multi-language support for symbol output
+- Create downloadable audio files for TTS
 
 ---
