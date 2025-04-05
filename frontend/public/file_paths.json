@@ -1,5 +1,5 @@
 {
-    "id": "file_paths",
+    "id": "",
     "path": "",
     "files": [
         {
@@ -99,6 +99,87 @@
                 {
                     "id": "relaxed",
                     "path": "symbols/mulberry/relax_3_,_to.svg"
+                }
+            ]
+        },
+        {
+            "id": "body",
+            "path": "symbols/mulberry/body_outline.svg",
+            "files": [
+                {
+                    "id": "I have pain in",
+                    "path": "/symbols/arasaac/i_am_pain.png"
+                },
+                {
+                    "id": "itch",
+                    "path": "/symbols/mulberry/itch.svg"
+                },
+                {
+                    "id": "head",
+                    "path": "/symbols/mulberry/head.svg"
+                },
+                {
+                    "id": "neck",
+                    "path": "/symbols/mulberry/neck.svg"
+                },
+                {
+                    "id": "shoulder",
+                    "path": "/symbols/mulberry/shoulder.svg"
+                },
+                
+                {
+                    "id": "medical",
+                    "path": "/symbols/mulberry/first_aid_box.svg",
+                    "files": [
+                        {
+                            "id": "I am",
+                            "path": "/symbols/arasaac/i_am.png"
+                        },
+                        {
+                            "id": "I have",
+                            "path": "/symbols/arasaac/i_have.png"
+                        },
+                        {
+                            "id": "I need",
+                            "path": "/symbols/mulberry/help_,_to.svg"
+                        },
+                        {
+                            "id": "back ache",
+                            "path": "/symbols/mulberry/back_ache.svg"
+                        },
+                        {
+                            "id": "headache",
+                            "path": "/symbols/mulberry/headache.svg"
+                        },
+                        {
+                            "id": "stomach ache",
+                            "path": "/symbols/mulberry/stomach_ache.svg"
+                        },
+                        {
+                            "id": "toothache",
+                            "path": "/symbols/mulberry/toothache.svg"
+                        },
+                        {
+                            "id": "inhaler",
+                            "path": "/symbols/mulberry/inhaler.svg"
+                        },
+                        {
+                            "id": "rash",
+                            "path": "/symbols/mulberry/rash.svg"
+                        },
+                        {
+                            "id": "to vomit",
+                            "path": "/symbols/mulberry/vomit_,_to.svg"
+                        },
+                        {
+                            "id": "cut",
+                            "path": "/symbols/mulberry/cut.svg"
+                        },
+                        {
+                            "id": "operation",
+                            "path": "/symbols/mulberry/operation.svg"
+                        }
+                    ]
                 }
             ]
         }
