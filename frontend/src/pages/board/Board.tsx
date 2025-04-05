@@ -1,83 +1,11 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-
-type ImageData = {
-    id: string;
-    path: string;
-    files?: ImageData[];
-};
-
-const data: ImageData = {
-    id: "",
-    path: "",
-    files: [{ 
-        id: "quick chat", 
-        path: "./assets/quick_chat.svg", 
-        files: [{
-            id: "yes",
-            path: "./assets/quick_chat/yes.png"
-        }, {
-            id: "no",
-            path: "./assets/quick_chat/no.png"
-        }, {
-            id: "maybe",
-            path: "./assets/quick_chat/maybe.png"
-        }]
-    }, {
-        id: "food",
-        path: "./assets/food.svg",
-        files: [{
-            id: "soups",
-            path: "./assets/food/soups.svg",
-            files: [{
-                id: "chicken soup",
-                path: "./assets/food/soups/chicken_soup.png"
-            }, {
-                id: "vegetable soup",
-                path: "./assets/food/soups/vegetable_soup.png"
-            }]
-        }, {
-            id: "salads",
-            path: "./assets/food/salads.svg",
-            files: [{
-                id: "caesar salad",
-                path: "./assets/food/salads/caesar_salad.png"
-            }, {
-                id: "greek salad",
-                path: "./assets/food/salads/greek_salad.png"
-            }]
-        }, {
-            id: "toast",
-            path: "./assets/food/toast.png",
-        }, {
-            id: "pizza",
-            path: "./assets/food/pizza.png",
-        }, {
-            id: "burger",
-            path: "./assets/food/burger.png",
-        }]
-    }, {
-        id: "time",
-        path: "./assets/time.svg",
-        files: [{
-            id: "morning",
-            path: "./assets/time/morning.png"
-        }, {
-            id: "afternoon",
-            path: "./assets/time/afternoon.png"
-        }, {
-            id: "evening",
-            path: "./assets/time/evening.png"
-        }]
-    }]
-}
-
+import { ImageData, data } from "./file_paths";
 
 export default function BoardPage() {
     const [category, setCategory] = useState<number[]>([]);
-    const [image, setImage] = useState<string | null>(null);
-    const [imageBar, setImageBar] = useState<string[]>(["placeholder"]);
+    const [imageBar, setImageBar] = useState<{id: string, path: string}[]>([]);
     const images: ImageData = category.reduce((acc: ImageData, key: number) => {
         return acc.files?.[key] as ImageData;
     }, data);
@@ -93,12 +21,18 @@ export default function BoardPage() {
         setCategory(newCategory);
     }
 
-    return <div className="w-full min-h-screen flex flex-col">
-        <div className="w-full h-[20vh] bg-gray-200">
-            <div id="image-bar" className="w-[90%] h-full flex flex-row justify-between items-left p-2">
-                {imageBar.map((image, index) => 
-                    <div key={index} className="w-[10%] h-full bg-gray-300 rounded-lg flex justify-center items-center">
+    const addImage = (id: string, path: string) => {
+        const newImageBar = [...imageBar, { id, path }];
+        setImageBar(newImageBar);
+    }
 
+    return <div className="w-full min-h-screen flex flex-col">
+        <div className="w-full h-[22vh] bg-gray-200">
+            <div id="image-bar" className="w-[90%] h-full flex flex-row items-left p-4">
+                {imageBar.map(({id, path}, index) => 
+                    <div key={index} className="flex-col w-[28vw] max-w-[200px] h-full bg-gray-300 rounded-lg flex justify-center items-center mr-5">
+                        <img src={path} alt={id} className="w-full h-[75%] object-contain rounded-lg" />
+                        <div>{id}</div>
                     </div>
                 )}
             </div>
@@ -113,18 +47,16 @@ export default function BoardPage() {
                 <h1 className="text-white text-3xl font-bold">{images.id || ''}</h1>  
             </div>
         </div>
-        <div id="image-board" className="w-full flex flex-row flex-wrap p-2 items-start gap-2">
+        <div id="image-board" className="w-full flex flex-row flex-wrap p-2 items-start gap-4">
             {images.files?.map((file, index) =>
-                !file.files ? (
-                    <div key={index} className="w-[28vw] max-w-[300px] h-[25vh] bg-amber-200 rounded-lg ml-1 shadow-xl hover:border-gray-600 hover:border-2">
-
-                    </div> 
-                ) : (
-                    <div key={index} className="w-[28vw] max-w-[300px] h-[25vh] bg-blue-300 ml-1 shadow-xl hover:border-gray-600 hover:border-2" onClick={() => enterFolder(index)}>
-                        {file.id}
-                    </div>
-                )
-            )}
+                <div key={index} className={"flex flex-col items-center justify-center w-[28vw] max-w-[300px] h-[25vh] " +
+                    (!file.files ? "bg-amber-200" : "bg-blue-300") + 
+                    " rounded-lg ml-1 shadow-xl hover:border-gray-600 hover:border-2"}
+                    onClick={() => file.files ? 
+                        enterFolder(index) : addImage(file.id, file.path)}>
+                        <img src={file.path} alt={file.id} className="h-[80%] object-cover rounded-lg" />
+                        <div>{file.id}</div>
+                </div>)}
         </div>
     </div>
 }

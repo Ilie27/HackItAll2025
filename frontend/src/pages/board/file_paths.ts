@@ -1,4 +1,10 @@
-{
+export type ImageData = {
+    id: string;
+    path: string;
+    files?: ImageData[];
+};
+
+export const data = {
     "id": "",
     "path": "",
     "files": [
@@ -8,7 +14,7 @@
         },
         {
             "id": "no",
-            "path": "/symbols/arasaac/no.svg"
+            "path": "/symbols/mulberry/no.svg"
         },
         {
             "id": "quick_chat",
@@ -20,7 +26,7 @@
                 },
                 {
                     "id": "no",
-                    "path": "/symbols/arasaac/no.svg"
+                    "path": "/symbols/mulberry/no.svg"
                 },
                 {
                     "id": "hello",
