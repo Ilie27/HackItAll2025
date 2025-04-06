@@ -1,4 +1,4 @@
-import { Context, createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 type AppMode = 'speak' | 'emergency' | 'call';
 type ContextType = {

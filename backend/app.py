@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
 import os
 import uuid
@@ -17,6 +18,8 @@ genai.configure(api_key=api_key)
 # Initialize Flask app
 app = Flask(__name__)
 sessions = {}  # In-memory session storage
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Health check
 @app.route('/')
@@ -130,7 +133,7 @@ def send_emergency():
         return jsonify({"error": str(e)}), 500
 
 # Update user profile information (name, address, condition)
-@app.route('/update_profile', methods=['PATCH'])
+@app.route('/update_profile', methods=['POST'])
 def update_profile():
     data = request.get_json()
     session_id = data.get("session_id")

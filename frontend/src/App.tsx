@@ -9,6 +9,7 @@ function App() {
 	return <BrowserRouter>
 		<Navbar />
 		<Routes>
+			<Route path="/" element={<Profile />} />
 			<Route path="/profile" element={<Profile />} />
 			<Route path="/menu" element={<Menu />} /> 
 			<Route path="/board" element={<BoardPage />} />

@@ -15,6 +15,12 @@ export default function BoardPage() {
         return acc.files?.[key] as ImageData;
     }, mode === 'emergency' ? emergencyData : data);
 
+    const finishAction = {
+        'speak': { text: 'Speak', img: '/symbols/mulberry/message_bubble.png' },
+        'emergency': { text: 'Call 112', img: '/symbols/mulberry/emergency.png' },
+        'call': { text: 'Call', img: '/symbols/mulberry/iphone.svg' }
+    }
+
     const enterFolder = (key: number) => {
         const newCategory = [...category, key];
         setCategory(newCategory);
@@ -39,8 +45,8 @@ export default function BoardPage() {
     }
 
     return <div className="w-full min-h-screen flex flex-col">
-        <div className="w-full h-[22vh] bg-gray-200">
-            <div id="image-bar" className="w-[90%] h-full flex flex-row items-left p-4">
+        <div className="flex flex-row w-full h-[22vh] bg-gray-200">
+            <div id="image-bar" className="w-[85%] h-full flex flex-row items-left p-4">
                 {imageBar.map(({id, path}, index) => 
                     <div key={index} className="flex-col w-[28vw] max-w-[200px] h-full bg-gray-300 rounded-lg flex justify-center items-center mr-5 py-2
                     stripped-out" onClick={() => removeImage(index)}>
@@ -50,6 +56,13 @@ export default function BoardPage() {
                 )}
             </div>
             {/* buttons */}
+            <div className="ml-auto w-[15%] h-full flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center w-full h-full bg-gray-300 rounded-lg hover:cursor-pointer hover:bg-gray-400 p-2"
+                    onClick={() => setImageBar([])}>
+                    <img src={finishAction[mode].img} alt="Send" className="h-[40%] object-contain" />
+                    <div>{finishAction[mode].text}</div>
+                </div>
+            </div>
         </div>
         <div className="w-full h-[75px] bg-gray-800 flex flex-row">
             <div className="flex flex-row items-center hover:cursor-pointer hover:bg-gray-600">
