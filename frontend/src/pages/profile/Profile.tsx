@@ -1,8 +1,11 @@
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import { useNavigate } from 'react-router-dom';
+import speak from "../../text_to_speech"
 
 export default function Profile() {
+    const navigate = useNavigate();
     const [page, setPage] = useState(0);
     const pages = [<DisabilitySelect />, <PersonalDetails />, <MoreDetails />]
 
@@ -15,7 +18,13 @@ export default function Profile() {
         </div>
         {pages[page]}
         <div className="w-[90%] md:w-1/2 px-5 flex justify-center mt-4 space-x-4 text-xl">
-            <button onClick={() => setPage(page + 1)} className="bg-blue-500 text-white rounded p-2 hover:bg-blue-600 px-20 py-4">{page < 2 ? "Next" : "Finish"} </button>
+    <button onClick={() => {
+        if (page < pages.length - 1) {
+            setPage(page + 1);
+        } else {
+            navigate('/board');
+        }
+    }} className="bg-blue-500 text-white rounded p-2 hover:bg-blue-600 px-20 py-4">{page < 2 ? "Next" : "Finish"} </button>
         </div>
     </div>
 }
@@ -43,9 +52,9 @@ function DisabilitySelect() {
     type DisabilityType = 'autism' | 'idd' | 'speech';
 
     const disablities: DisabilityDesc[] = [
-        { name: 'Autism Spectrum', icon: '/images/brain.png', type: 'autism' },
-        { name: 'Cognitive Disorder', icon: '/images/brain.png', type: 'idd' },
-        { name: 'Speech Disorder', icon: '/images/brain.png', type: 'speech' },
+        { name: 'Autism Spectrum', icon: '/images/autism_spectrum.png', type: 'autism' },
+        { name: 'Cognitive Disorder', icon: '/images/cognitive_disorder.png', type: 'idd' },
+        { name: 'Speech Disorder', icon: '/images/speech_disorder.png', type: 'speech' },
     ];
 
     return <div className="w-[90%] md:w-1/2 bg-white shadow-md rounded-lg p-6">
@@ -54,7 +63,10 @@ function DisabilitySelect() {
             {disablities.map((disability) => (
                 <div className={"w-full rounded-lg p-2 shadow-md flex flex-col items-center hover:shadow-blue-100 transition hover:shadow-md " +
                     (disability.type === selectedDisability ? "bg-blue-100" : "bg-gray-50")}
-                onClick={() => setSelectedDisability(disability.type)} key={disability.type}>
+                onClick={() => {
+                    setSelectedDisability(disability.type);
+                    speak(disability.name);
+                }} key={disability.type}>
                     <img src={disability.icon} alt={disability.name} className="w-10 h-10 mx-auto" />
                     <span className="text-xl">{disability.name}</span>
                 </div>
