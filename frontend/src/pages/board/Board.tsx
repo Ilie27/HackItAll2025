@@ -5,6 +5,7 @@ import { ImageData, data } from "./file_paths";
 import { data as emergencyData } from "../emergency/emergency_paths";
 import speak from "../../../src/text_to_speech"
 import { AppContext } from "../../AppContext";
+import { instance } from "../../common/requests";
 
 export default function BoardPage() {
     const [category, setCategory] = useState<number[]>([]);
@@ -18,7 +19,7 @@ export default function BoardPage() {
     const finishAction = {
         'speak': { text: 'Speak', img: '/symbols/mulberry/message_bubble.png' },
         'emergency': { text: 'Call 112', img: '/symbols/mulberry/emergency.png' },
-        'call': { text: 'Call', img: '/symbols/mulberry/iphone.svg' }
+        'message': { text: 'Message', img: '/symbols/mulberry/iphone.svg' }
     }
 
     const enterFolder = (key: number) => {
@@ -44,6 +45,21 @@ export default function BoardPage() {
         setImageBar(newImageBar);
     }
 
+    const getWords = () => imageBar.map(({id}) => id);
+
+    const handleFinish = () => {
+        if (mode === 'speak') {
+            instance.post('send_symbols', {
+                "session_id": localStorage.getItem('session_id'),
+                "symbols": getWords()
+            }).then(res => {
+                console.log(res.data);
+                speak(res.data.message);
+            })
+        }
+        setImageBar([]);
+    }
+
     return <div className="w-full min-h-screen flex flex-col">
         <div className="flex flex-row w-full h-[22vh] bg-gray-200">
             <div id="image-bar" className="w-[85%] h-full flex flex-row items-left p-4">
@@ -58,7 +74,7 @@ export default function BoardPage() {
             {/* buttons */}
             <div className="ml-auto w-[15%] h-full flex flex-col items-center justify-center">
                 <div className="flex flex-col items-center justify-center w-full h-full bg-gray-300 rounded-lg hover:cursor-pointer hover:bg-gray-400 p-2"
-                    onClick={() => setImageBar([])}>
+                    onClick={handleFinish}>
                     <img src={finishAction[mode].img} alt="Send" className="h-[40%] object-contain" />
                     <div>{finishAction[mode].text}</div>
                 </div>

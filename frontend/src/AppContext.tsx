@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from "react";
 
-type AppMode = 'speak' | 'emergency' | 'call';
+type AppMode = 'speak' | 'emergency' | 'message';
 type ContextType = {
     mode: AppMode;
     setMode: (mode: AppMode) => void;

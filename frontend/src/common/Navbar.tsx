@@ -10,13 +10,13 @@ export default function Navbar() {
     const { mode, setMode } = useContext(AppContext);
     const navigate = useNavigate();
 
-    const modeChange = (newMode: 'speak' | 'emergency' | 'call') => {
+    const modeChange = (newMode: 'speak' | 'emergency' | 'message') => {
         setMode(newMode);
         setSidebar(false);
         speak(modeName(newMode));
     }
 
-    const modeName = (mode: 'speak' | 'emergency' | 'call') => {
+    const modeName = (mode: 'speak' | 'emergency' | 'message') => {
         return mode[0].toUpperCase() + mode.slice(1) + " Mode";
     }
 
@@ -57,10 +57,10 @@ export default function Navbar() {
                 </div>
                 <div className="flex items-center flex-col bg-blue-200 box-content
                     rounded-lg px-2 w-[24vw] max-w-[180px] hover:cursor-pointer hover:shadow-lg transition-all duration-200"
-                    onClick={() => modeChange('call')}
+                    onClick={() => modeChange('message')}
                 >
                     <img src={"/symbols/mulberry/iphone.svg"} alt="Send" className="h-[12vh] object-contain" />
-                    <div>Phone Call</div>
+                    <div>Message</div>
                 </div>
                 <button
                 className="w-12 h-12 bg-red-600 text-white text-3xl rounded-full flex items-center justify-center hover:bg-red-700 transition"
