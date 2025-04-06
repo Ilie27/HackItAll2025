@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind preflight;
 
 .stripped-out:hover {
     background: repeating-linear-gradient(

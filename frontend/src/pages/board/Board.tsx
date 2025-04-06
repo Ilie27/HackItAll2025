@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { ImageData, data } from "./file_paths";
@@ -6,6 +6,7 @@ import { data as emergencyData } from "../emergency/emergency_paths";
 import speak from "../../../src/text_to_speech"
 import { AppContext } from "../../AppContext";
 import { instance } from "../../common/requests";
+import { openSMS } from "../../common/send_sms";
 
 export default function BoardPage() {
     const [category, setCategory] = useState<number[]>([]);
@@ -16,9 +17,13 @@ export default function BoardPage() {
         return acc.files?.[key] as ImageData;
     }, mode === 'emergency' ? emergencyData : data);
 
+    useEffect(() => {
+        setImageBar([]);
+    }, [mode]);
+
     const finishAction = {
         'speak': { text: 'Speak', img: '/symbols/mulberry/message_bubble.png' },
-        'emergency': { text: 'Call 112', img: '/symbols/mulberry/emergency.png' },
+        'emergency': { text: 'Text 113', img: '/symbols/mulberry/emergency.png' },
         'message': { text: 'Message', img: '/symbols/mulberry/iphone.svg' }
     }
 
@@ -47,16 +52,32 @@ export default function BoardPage() {
 
     const getWords = () => imageBar.map(({id}) => id);
 
-    const handleFinish = () => {
-        if (mode === 'speak') {
-            instance.post('send_symbols', {
-                "session_id": localStorage.getItem('session_id'),
-                "symbols": getWords()
-            }).then(res => {
-                console.log(res.data);
-                speak(res.data.message);
-            })
+    const handleFinish = async () => {
+        if (mode == 'emergency') {
+            await new Promise((res, rej) => {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const { latitude, longitude } = position.coords;
+                    instance.post('update_profile', {
+                        session_id: localStorage.getItem('session_id'),
+                        address: `latitude ${latitude}, longitude ${longitude}`
+                    }).then(res);
+                });
+            });
         }
+        instance.post(mode == 'speak' ? 'send_symbols' :
+                      mode == 'emergency' ? 'send_emergency' : 'send_symbols', 
+        {
+            "session_id": localStorage.getItem('session_id'),
+            "symbols": getWords()
+        }).then(res => {
+            console.log(res.data);
+            if (mode == 'speak')
+                speak(res.data.message);
+            else if (mode == 'emergency') {
+                openSMS(import.meta.env.VITE_EMERGENCY_CONTACT, res.data.emergency_message);
+            } else if (mode == 'message')
+                openSMS(import.meta.env.VITE_CONTACT, res.data.message);
+        })
         setImageBar([]);
     }
 
